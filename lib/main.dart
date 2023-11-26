@@ -5,11 +5,15 @@ import 'package:blocking_tracks/resources/Strings.dart';
 import 'package:blocking_tracks/routes/route_pages.dart';
 import 'package:blocking_tracks/routes/routes.dart';
 import 'package:blocking_tracks/styles/customtext_styles.dart';
+import 'package:blocking_tracks/utils/app_constant.dart';
+import 'package:blocking_tracks/utils/app_subscription.dart';
 import 'package:blocking_tracks/widgets/populate_main_canvas_list.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:reg_page/reg_page.dart';
 
 import 'controllers/backing_tracks_controllers.dart';
 import 'decorations/BoxDecorations.dart';
@@ -20,8 +24,38 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+
+  PackageInfo packageInfo = PackageInfo(
+    appName: '',
+    packageName: '',
+    version: '',
+    buildNumber: '',
+    buildSignature: '',
+    installerStore: '',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      packageInfo = info;
+    });
+  }
+
 
   // This widget is the root of your application.
   @override
@@ -34,7 +68,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeScreen,
+
+        home: SplashScreen(
+          yearlySubscriptionId: yearlySubscription(),
+          monthlySubscriptionId: monthlySubscription(),
+          appName: AppConstant.appName,
+          appVersion: packageInfo.version,
+          nextPage: () => const MyHomePage(),
+        ),
+        // initialRoute: Routes.homeScreen,
         getPages: appPages(),
       );
     });

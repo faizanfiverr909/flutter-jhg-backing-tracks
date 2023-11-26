@@ -40,6 +40,10 @@ dependencies:
   google_fonts: ^6.1.0
   device_preview: ^1.1.0
   get: ^4.6.6
+  package_info_plus: ^4.2.0
+  device_info_plus: ^9.1.1
+  reg_page:
+    path: /Users/Development/fre_projects/flutter-jhg-reg-page
 
 dev_dependencies:
   flutter_test:
