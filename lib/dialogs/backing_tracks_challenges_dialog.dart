@@ -1,6 +1,7 @@
 import 'package:blocking_tracks/controllers/challenges_controller.dart';
 import 'package:blocking_tracks/decorations/BoxDecorations.dart';
 import 'package:blocking_tracks/decorations/ButtonDecorations.dart';
+import 'package:blocking_tracks/widgets/drop_down_widget.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,82 +52,16 @@ class ChallengesDialog extends StatelessWidget {
                     padding: EdgeInsets.only(top: 4.h),
                     child: Align(
                       alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 60.dp,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2<String>(
-                            isExpanded: true,
-                            hint: Padding(
-                              padding: EdgeInsets.only(left: 15.dp),
-                              child: Text(
-                                "Frequency",
-                                style: CustomTextStyles.whiteTextStyle(13),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            items: _controller.itemsList
-                                .map((String item) => DropdownItem<String>(
-                                    value: item,
-                                    height: 60.dp,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 15.dp),
-                                      child: Text(
-                                        item,
-                                        style:
-                                            CustomTextStyles.whiteTextStyle(13),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    )))
-                                .toList(),
-                            dropdownSeparator: DropdownSeparator(
-                              height: 1.dp,
-                              child: const Divider(
-                                color: CustomColors.divider,
-                              ),
-                            ),
-                            value: _controller.dropDownSelectedValue,
-                            onChanged: (String? value) {
-                              if (value != null) {
-                                _controller.setDropDownValue(value);
-                              }
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              padding: EdgeInsets.only(right: 15.dp),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: CustomColors.greyLightColor,
-                                ),
-                                color: CustomColors.greyLightColor,
-                              ),
-                              elevation: 0,
-                            ),
-                            iconStyleData: IconStyleData(
-                              icon: SizedBox(
-                                  width: 15.dp,
-                                  height: 15.dp,
-                                  child: Image.asset(CustomImages.arrowDown)),
-                              iconSize: 14,
-                              iconEnabledColor: CustomColors.whiteColor,
-                              iconDisabledColor: Colors.white,
-                            ),
-                            dropdownStyleData: DropdownStyleData(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8),
-                                    bottomRight: Radius.circular(8)),
-                                color: CustomColors.greyLightColor,
-                              ),
-                              scrollbarTheme: ScrollbarThemeData(
-                                thickness: MaterialStateProperty.all<double>(6),
-                                thumbVisibility:
-                                    MaterialStateProperty.all<bool>(true),
-                              ),
-                              offset: Offset(0, 8.dp),
-                              elevation: 0,
-                            ),
-                          ),
-                        ),
+                      child: DropDownWidget(
+                        value: _controller.dropDownSelectedValue,
+                        items: _controller.itemsList,
+                        expandedColor: CustomColors.liteWhite,
+                        hint: "Frequency",
+                        onChanged: (value) async {
+                          if (value != null) {
+                            _controller.setDropDownValue(value);
+                          }
+                        },
                       ),
                     )),
                 Flexible(

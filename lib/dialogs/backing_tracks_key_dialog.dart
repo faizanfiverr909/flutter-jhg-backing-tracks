@@ -1,4 +1,5 @@
 import 'package:blocking_tracks/dialogs/backing_tracks_open_dialog.dart';
+import 'package:blocking_tracks/widgets/drop_down_widget.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,90 +99,15 @@ class BackingTracksKeyDialog extends StatelessWidget {
                                 padding: EdgeInsets.only(top: 5.h),
                                 child: Align(
                                   alignment: Alignment.topLeft,
-                                  child: SizedBox(
-                                    height: 60.dp,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        items: _controller.itemKeyList
-                                            .map((String item) =>
-                                                DropdownItem<String>(
-                                                  value: item,
-                                                  height: 60.dp,
-                                                  child: Text(
-                                                    item,
-                                                    style: CustomTextStyles
-                                                        .whiteTextStyle(15),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ))
-                                            .toList(),
-                                        dropdownSeparator: DropdownSeparator(
-                                          height: 1.dp,
-                                          child: const Divider(
-                                            color: CustomColors.divider,
-                                          ),
-                                        ),
-                                        value: _controller
-                                            .dropDownKeySelectedValue,
-                                        onChanged: (String? value) {
-                                          if (value != null) {
-                                            _controller
-                                                .setDropDownKeyValue(value);
-                                          }
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          padding:
-                                              EdgeInsets.only(right: 10.dp),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            color: CustomColors.greyLightColor,
-                                          ),
-                                          elevation: 0,
-                                        ),
-                                        iconStyleData: IconStyleData(
-                                          icon: SizedBox(
-                                              width: 15.dp,
-                                              height: 15.dp,
-                                              child: Image.asset(
-                                                  CustomImages.arrowDown)),
-                                          iconSize: 14,
-                                          iconEnabledColor:
-                                              CustomColors.whiteColor,
-                                          iconDisabledColor: Colors.white,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200.dp,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(8),
-                                                  bottomRight:
-                                                      Radius.circular(8)),
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            scrollbarTheme: ScrollbarThemeData(
-                                              thickness: MaterialStateProperty
-                                                  .all<double>(6),
-                                              thumbVisibility:
-                                                  MaterialStateProperty.all<
-                                                      bool>(true),
-                                            ),
-                                            offset: Offset(0, 8.dp),
-                                            elevation: 0),
-                                        menuItemStyleData: MenuItemStyleData(
-                                          padding: EdgeInsets.only(
-                                              left: 15.dp, right: 15.dp),
-                                        ),
-                                      ),
-                                    ),
+                                  child: DropDownWidget(
+                                    value: _controller.dropDownKeySelectedValue,
+                                    items: _controller.itemKeyList,
+                                    expandedColor: CustomColors.liteWhite,
+                                    onChanged: (value) async {
+                                      if (value != null) {
+                                        _controller.setDropDownKeyValue(value);
+                                      }
+                                    },
                                   ),
                                 )),
                           ),
@@ -192,89 +118,17 @@ class BackingTracksKeyDialog extends StatelessWidget {
                                 padding: EdgeInsets.only(top: 5.h, left: 20.dp),
                                 child: Align(
                                   alignment: Alignment.topLeft,
-                                  child: SizedBox(
-                                    height: 60.dp,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        items: _controller.itemTonalitiesList
-                                            .map((String item) =>
-                                                DropdownItem<String>(
-                                                  value: item,
-                                                  height: 60.dp,
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 1.dp),
-                                                      child: Text(
-                                                        item,
-                                                        style: CustomTextStyles
-                                                            .whiteTextStyle(15),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      )),
-                                                ))
-                                            .toList(),
-                                        dropdownSeparator: DropdownSeparator(
-                                          height: 1.dp,
-                                          child: const Divider(
-                                            color: CustomColors.divider,
-                                          ),
-                                        ),
-                                        value: _controller
-                                            .dropDownTonalitiesSelectedValue,
-                                        onChanged: (String? value) {
-                                          if (value != null) {
-                                            _controller
-                                                .setDropDownTonalitiesValue(
-                                                    value);
-                                          }
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          padding:
-                                              EdgeInsets.only(right: 15.dp),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            color: CustomColors.greyLightColor,
-                                          ),
-                                          elevation: 0,
-                                        ),
-                                        iconStyleData: IconStyleData(
-                                          icon: SizedBox(
-                                              width: 15.dp,
-                                              height: 15.dp,
-                                              child: Image.asset(
-                                                  CustomImages.arrowDown)),
-                                          iconSize: 14,
-                                          iconEnabledColor:
-                                              CustomColors.whiteColor,
-                                          iconDisabledColor: Colors.white,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(8),
-                                                  bottomRight:
-                                                      Radius.circular(8)),
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            scrollbarTheme: ScrollbarThemeData(
-                                              thickness: MaterialStateProperty
-                                                  .all<double>(6),
-                                              thumbVisibility:
-                                                  MaterialStateProperty.all<
-                                                      bool>(true),
-                                            ),
-                                            offset: Offset(0, 8.dp),
-                                            elevation: 0),
-                                      ),
-                                    ),
+                                  child: DropDownWidget(
+                                    value: _controller
+                                        .dropDownTonalitiesSelectedValue,
+                                    items: _controller.itemTonalitiesList,
+                                    expandedColor: CustomColors.liteWhite,
+                                    onChanged: (value) async {
+                                      if (value != null) {
+                                        _controller
+                                            .setDropDownTonalitiesValue(value);
+                                      }
+                                    },
                                   ),
                                 )),
                           )
@@ -284,9 +138,8 @@ class BackingTracksKeyDialog extends StatelessWidget {
                         fit: FlexFit.tight,
                         flex: 1,
                         child: Center(
-                            child: populateGridData(),
-                          ),
-
+                          child: populateGridData(),
+                        ),
                       ),
                       Row(children: [
                         Expanded(
@@ -394,8 +247,8 @@ class BackingTracksKeyDialog extends StatelessWidget {
 
   Widget populateGridData() {
     return Padding(
-        padding: EdgeInsets.only(
-            left: 25.dp, right: 25.dp, top: 5.dp, bottom: 5.dp),
+        padding:
+            EdgeInsets.only(left: 25.dp, right: 25.dp, top: 5.dp, bottom: 5.dp),
         child: GridView.builder(
             itemCount: _controller.chardsGridData.length,
             shrinkWrap: true,

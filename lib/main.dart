@@ -231,7 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                             width: double.infinity,
                             height: double.infinity,
-                            decoration: BoxDecorations.greyBoxDecoration(8),
+                            decoration: BoxDecorations.greyBoxDecoration(12),
                             margin: EdgeInsets.only(top: 25.dp, bottom: 50.dp),
                             child: PopulateMainCanvasList(
                                 _controller.getDummyList())),

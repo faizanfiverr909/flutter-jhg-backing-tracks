@@ -14,4 +14,6 @@ class CustomColors {
   static const redlight = Color(0xFFFE5D43);
   static const blue = Color(0xFF6BB4CB);
   static const divider = Color(0xFFC9C9C9);
+  static const Color textHeadingColor = Color(0xffC0C0C4);
+  static const Color liteWhite = Color(0xff646464);
 }

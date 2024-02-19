@@ -1,3 +1,4 @@
+import 'package:blocking_tracks/widgets/drop_down_widget.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -90,90 +91,17 @@ class BackingTracksOpenDialog extends StatelessWidget {
                                 padding: EdgeInsets.only(top: 5.h),
                                 child: Align(
                                   alignment: Alignment.center,
-                                  child: SizedBox(
-                                    height: 60.dp,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        items: _controller.itemKeyListOpen
-                                            .map((String item) =>
-                                                DropdownItem<String>(
-                                                  value: item,
-                                                  height: 60.dp,
-                                                  child: Text(
-                                                    item,
-                                                    style: CustomTextStyles
-                                                        .whiteTextStyle(15),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ))
-                                            .toList(),
-                                        dropdownSeparator: DropdownSeparator(
-                                          height: 1.dp,
-                                          child: const Divider(
-                                            color: CustomColors.divider,
-                                          ),
-                                        ),
-                                        value: _controller
-                                            .dropDownKeySelectedValueOpen,
-                                        onChanged: (String? value) {
-                                          if (value != null) {
-                                            _controller
-                                                .setDropDownKeyValueOpen(value);
-                                          }
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          padding:
-                                              EdgeInsets.only(right: 10.dp),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            color: CustomColors.greyLightColor,
-                                          ),
-                                          elevation: 0,
-                                        ),
-                                        iconStyleData: IconStyleData(
-                                          icon: SizedBox(
-                                              width: 15.dp,
-                                              height: 15.dp,
-                                              child: Image.asset(
-                                                  CustomImages.arrowDown)),
-                                          iconSize: 14,
-                                          iconEnabledColor:
-                                              CustomColors.whiteColor,
-                                          iconDisabledColor: Colors.white,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                            maxHeight: 200.dp,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(8),
-                                                  bottomRight:
-                                                      Radius.circular(8)),
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            scrollbarTheme: ScrollbarThemeData(
-                                              thickness: MaterialStateProperty
-                                                  .all<double>(6),
-                                              thumbVisibility:
-                                                  MaterialStateProperty.all<
-                                                      bool>(true),
-                                            ),
-                                            offset: Offset(0, 10.dp),
-                                            elevation: 0),
-                                        menuItemStyleData: MenuItemStyleData(
-                                          padding: EdgeInsets.only(
-                                              left: 15.dp, right: 15.dp),
-                                        ),
-                                      ),
-                                    ),
+                                  child: DropDownWidget(
+                                    value: _controller
+                                        .dropDownKeySelectedValueOpen,
+                                    items: _controller.itemKeyListOpen,
+                                    expandedColor: CustomColors.liteWhite,
+                                    onChanged: (value) async {
+                                      if (value != null) {
+                                        _controller
+                                            .setDropDownKeyValueOpen(value);
+                                      }
+                                    },
                                   ),
                                 )),
                           ),
@@ -184,93 +112,18 @@ class BackingTracksOpenDialog extends StatelessWidget {
                                 padding: EdgeInsets.only(top: 5.h, left: 20.dp),
                                 child: Align(
                                   alignment: Alignment.center,
-                                  child: SizedBox(
-                                    height: 60.dp,
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2<String>(
-                                        isExpanded: true,
-                                        items: _controller.itemTonalitiesListOpen
-                                            .map((String item) =>
-                                                DropdownItem<String>(
-                                                    value: item,
-                                                    height: 60.dp,
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 1.dp),
-                                                      child: Text(
-                                                        item,
-                                                        style: CustomTextStyles
-                                                            .whiteTextStyle(15),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    )))
-                                            .toList(),
-                                        dropdownSeparator: DropdownSeparator(
-                                          height: 1.dp,
-                                          child: const Divider(
-                                            color: CustomColors.divider,
-                                          ),
-                                        ),
-                                        value: _controller
-                                            .dropDownTonalitiesSelectedValueOpen,
-                                        onChanged: (String? value) {
-                                          if (value != null) {
-                                            _controller
-                                                .setDropDownTonalitiesValueOpen(
-                                                    value);
-                                          }
-                                        },
-                                        buttonStyleData: ButtonStyleData(
-                                          padding:
-                                              EdgeInsets.only(right: 15.dp),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            color: CustomColors.greyLightColor,
-                                          ),
-                                          elevation: 0,
-                                        ),
-                                        iconStyleData: IconStyleData(
-                                          icon: SizedBox(
-                                              width: 15.dp,
-                                              height: 15.dp,
-                                              child: Image.asset(
-                                                  CustomImages.arrowDown)),
-                                          iconSize: 14,
-                                          iconEnabledColor:
-                                              CustomColors.whiteColor,
-                                          iconDisabledColor: Colors.white,
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(8),
-                                                  bottomRight:
-                                                      Radius.circular(8)),
-                                              color:
-                                                  CustomColors.greyLightColor,
-                                            ),
-                                            scrollbarTheme: ScrollbarThemeData(
-                                              thickness: MaterialStateProperty
-                                                  .all<double>(6),
-                                              thumbVisibility:
-                                                  MaterialStateProperty.all<
-                                                      bool>(true),
-                                            ),
-                                            offset: Offset(0, 10.dp),
-                                            elevation: 0),
-                                        menuItemStyleData: MenuItemStyleData(
-                                          padding: EdgeInsets.only(
-                                              left: 15.dp, right: 15.dp),
-                                        ),
-                                      ),
-                                    ),
+                                  child: DropDownWidget(
+                                    value: _controller
+                                        .dropDownTonalitiesSelectedValueOpen,
+                                    items: _controller.itemTonalitiesListOpen,
+                                    expandedColor: CustomColors.liteWhite,
+                                    onChanged: (value) async {
+                                      if (value != null) {
+                                        _controller
+                                            .setDropDownTonalitiesValueOpen(
+                                                value);
+                                      }
+                                    },
                                   ),
                                 )),
                           )
@@ -321,8 +174,8 @@ class BackingTracksOpenDialog extends StatelessWidget {
                                       Transform.scale(
                                         scale: 1.4,
                                         child: Checkbox(
-                                            value:
-                                                _controller.defaultEditingPanelOpen,
+                                            value: _controller
+                                                .defaultEditingPanelOpen,
                                             onChanged: (value) {
                                               if (value != null) {
                                                 _controller
